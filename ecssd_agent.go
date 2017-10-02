@@ -474,6 +474,7 @@ func syncDNSRecords() error {
 	for _, id := range toAdd {
 		container, err := dockerClient.ContainerInspect(context.Background(), id)
 		if err != nil {
+			logErrorNoFatal(err)
 			continue
 		}
 		allServices := getNetworkPortAndServiceName(container, true)
